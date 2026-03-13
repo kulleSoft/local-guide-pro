@@ -3,17 +3,17 @@ import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { icon: Home, label: 'Início', path: '/' },
-  { icon: Search, label: 'Buscar', path: '/buscar' },
-  { icon: Compass, label: 'Explorar', path: '/explorar' },
+  { icon: Compass, label: 'Explorar', path: '/' },
   { icon: Heart, label: 'Favoritos', path: '/favoritos' },
+  { icon: Search, label: 'Buscar', path: '/buscar' },
+  { icon: Home, label: 'Início', path: '/explorar' },
 ];
 
 export function BottomNav() {
   const { pathname } = useLocation();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t bg-card/95 backdrop-blur-lg safe-area-bottom">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-card border-t safe-area-bottom">
       <div className="flex items-center justify-around h-16 max-w-lg mx-auto">
         {navItems.map(({ icon: Icon, label, path }) => {
           const active = path === '/' ? pathname === '/' : pathname.startsWith(path);
@@ -26,7 +26,7 @@ export function BottomNav() {
                 active ? 'text-primary' : 'text-muted-foreground'
               )}
             >
-              <Icon className="h-5 w-5" strokeWidth={active ? 2.5 : 2} />
+              <Icon className="h-5 w-5" strokeWidth={active ? 2.5 : 1.5} />
               <span className="text-[10px] font-medium">{label}</span>
             </Link>
           );

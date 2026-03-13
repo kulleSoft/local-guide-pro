@@ -18,10 +18,18 @@ const Index = () => {
   });
 
   return (
-    <div className="space-y-5 py-4">
-      <BannerCarousel />
+    <div className="space-y-4 py-4">
+      {/* Hero text */}
+      <div className="px-4">
+        <h1 className="text-2xl font-extrabold leading-tight">
+          Descubra Novos<br />
+          <span className="text-primary">Lugares</span>
+        </h1>
+      </div>
 
       <SearchBar value={search} onChange={setSearch} />
+
+      <BannerCarousel />
 
       <CategoryChips selected={categoryId} onSelect={setCategoryId} />
 
@@ -29,8 +37,8 @@ const Index = () => {
       {!search && !categoryId && (featured?.length ?? 0) > 0 && (
         <section className="px-4">
           <h2 className="font-bold text-lg mb-3">🔥 Destaques</h2>
-          <div className="grid gap-4">
-            {featured?.slice(0, 3).map(place => (
+          <div className="grid grid-cols-2 gap-3">
+            {featured?.slice(0, 4).map(place => (
               <PlaceCard key={place.id} place={place as any} />
             ))}
           </div>
@@ -40,14 +48,14 @@ const Index = () => {
       {/* All places */}
       <section className="px-4">
         <h2 className="font-bold text-lg mb-3">
-          {categoryId ? 'Resultados' : search ? 'Busca' : 'Todos os locais'}
+          {categoryId ? 'Resultados' : search ? 'Busca' : 'Populares'}
         </h2>
         {loadingPlaces ? (
-          <div className="grid gap-4">
+          <div className="grid grid-cols-2 gap-3">
             {Array.from({ length: 4 }).map((_, i) => <PlaceCardSkeleton key={i} />)}
           </div>
         ) : places?.length ? (
-          <div className="grid gap-4">
+          <div className="grid grid-cols-2 gap-3">
             {places.map(place => (
               <PlaceCard key={place.id} place={place as any} />
             ))}
