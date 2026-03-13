@@ -29,6 +29,7 @@ const App = () => (
           <Route element={<PublicLayout />}>
             <Route path="/" element={<Index />} />
             <Route path="/buscar" element={<SearchPage />} />
+            <Route path="/explorar" element={<ExplorePage />} />
             <Route path="/favoritos" element={<FavoritesPage />} />
             <Route path="/local/:slug" element={<PlaceDetails />} />
           </Route>
