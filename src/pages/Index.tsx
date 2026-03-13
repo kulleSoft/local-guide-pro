@@ -18,16 +18,16 @@ const Index = () => {
   });
 
   return (
-    <div className="space-y-4 py-4">
-      {/* Hero text */}
-      <div className="px-4">
-        <h1 className="text-2xl font-extrabold leading-tight">
-          Descubra Novos<br />
-          <span className="text-primary">Lugares</span>
+    <div className="space-y-5 pb-4">
+      {/* Hero section with red bg */}
+      <div className="bg-primary -mt-1 pt-4 pb-6 px-5 rounded-b-[28px]">
+        <h1 className="text-2xl font-extrabold text-primary-foreground leading-tight">
+          Descubra Novos<br />Lugares
         </h1>
+        <div className="mt-4">
+          <SearchBar value={search} onChange={setSearch} variant="hero" />
+        </div>
       </div>
-
-      <SearchBar value={search} onChange={setSearch} />
 
       <BannerCarousel />
 
@@ -36,7 +36,10 @@ const Index = () => {
       {/* Featured */}
       {!search && !categoryId && (featured?.length ?? 0) > 0 && (
         <section className="px-4">
-          <h2 className="font-bold text-lg mb-3">🔥 Destaques</h2>
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="font-bold text-base">🔥 Destaques</h2>
+            <span className="text-xs text-primary font-semibold">Ver todos</span>
+          </div>
           <div className="grid grid-cols-2 gap-3">
             {featured?.slice(0, 4).map(place => (
               <PlaceCard key={place.id} place={place as any} />
@@ -47,9 +50,12 @@ const Index = () => {
 
       {/* All places */}
       <section className="px-4">
-        <h2 className="font-bold text-lg mb-3">
-          {categoryId ? 'Resultados' : search ? 'Busca' : 'Populares'}
-        </h2>
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="font-bold text-base">
+            {categoryId ? 'Resultados' : search ? 'Busca' : 'Populares'}
+          </h2>
+          <span className="text-xs text-primary font-semibold">Ver todos</span>
+        </div>
         {loadingPlaces ? (
           <div className="grid grid-cols-2 gap-3">
             {Array.from({ length: 4 }).map((_, i) => <PlaceCardSkeleton key={i} />)}
