@@ -14,16 +14,288 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      banners: {
+        Row: {
+          active: boolean | null
+          created_at: string | null
+          display_order: number | null
+          id: string
+          image_url: string
+          link: string | null
+          subtitle: string | null
+          title: string | null
+        }
+        Insert: {
+          active?: boolean | null
+          created_at?: string | null
+          display_order?: number | null
+          id?: string
+          image_url: string
+          link?: string | null
+          subtitle?: string | null
+          title?: string | null
+        }
+        Update: {
+          active?: boolean | null
+          created_at?: string | null
+          display_order?: number | null
+          id?: string
+          image_url?: string
+          link?: string | null
+          subtitle?: string | null
+          title?: string | null
+        }
+        Relationships: []
+      }
+      categories: {
+        Row: {
+          active: boolean | null
+          created_at: string | null
+          display_order: number | null
+          icon: string | null
+          id: string
+          name: string
+          slug: string
+        }
+        Insert: {
+          active?: boolean | null
+          created_at?: string | null
+          display_order?: number | null
+          icon?: string | null
+          id?: string
+          name: string
+          slug: string
+        }
+        Update: {
+          active?: boolean | null
+          created_at?: string | null
+          display_order?: number | null
+          icon?: string | null
+          id?: string
+          name?: string
+          slug?: string
+        }
+        Relationships: []
+      }
+      favorites: {
+        Row: {
+          created_at: string | null
+          id: string
+          place_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          place_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          place_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "favorites_place_id_fkey"
+            columns: ["place_id"]
+            isOneToOne: false
+            referencedRelation: "places"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      places: {
+        Row: {
+          active: boolean | null
+          address: string | null
+          category_id: string | null
+          city: string | null
+          cover_image: string | null
+          created_at: string | null
+          description: string | null
+          display_order: number | null
+          featured: boolean | null
+          gallery: Json | null
+          google_maps_url: string | null
+          id: string
+          instagram: string | null
+          latitude: number | null
+          longitude: number | null
+          name: string
+          neighborhood: string | null
+          opening_hours: string | null
+          phone: string | null
+          price_range: number | null
+          rating: number | null
+          slug: string
+          updated_at: string | null
+          visit_count: number | null
+          website: string | null
+          whatsapp: string | null
+        }
+        Insert: {
+          active?: boolean | null
+          address?: string | null
+          category_id?: string | null
+          city?: string | null
+          cover_image?: string | null
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          featured?: boolean | null
+          gallery?: Json | null
+          google_maps_url?: string | null
+          id?: string
+          instagram?: string | null
+          latitude?: number | null
+          longitude?: number | null
+          name: string
+          neighborhood?: string | null
+          opening_hours?: string | null
+          phone?: string | null
+          price_range?: number | null
+          rating?: number | null
+          slug: string
+          updated_at?: string | null
+          visit_count?: number | null
+          website?: string | null
+          whatsapp?: string | null
+        }
+        Update: {
+          active?: boolean | null
+          address?: string | null
+          category_id?: string | null
+          city?: string | null
+          cover_image?: string | null
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          featured?: boolean | null
+          gallery?: Json | null
+          google_maps_url?: string | null
+          id?: string
+          instagram?: string | null
+          latitude?: number | null
+          longitude?: number | null
+          name?: string
+          neighborhood?: string | null
+          opening_hours?: string | null
+          phone?: string | null
+          price_range?: number | null
+          rating?: number | null
+          slug?: string
+          updated_at?: string | null
+          visit_count?: number | null
+          website?: string | null
+          whatsapp?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "places_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      reviews: {
+        Row: {
+          active: boolean | null
+          comment: string | null
+          created_at: string | null
+          id: string
+          place_id: string
+          rating: number
+          user_name: string
+        }
+        Insert: {
+          active?: boolean | null
+          comment?: string | null
+          created_at?: string | null
+          id?: string
+          place_id: string
+          rating: number
+          user_name: string
+        }
+        Update: {
+          active?: boolean | null
+          comment?: string | null
+          created_at?: string | null
+          id?: string
+          place_id?: string
+          rating?: number
+          user_name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_place_id_fkey"
+            columns: ["place_id"]
+            isOneToOne: false
+            referencedRelation: "places"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      settings: {
+        Row: {
+          created_at: string | null
+          id: string
+          key: string
+          updated_at: string | null
+          value: Json | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          key: string
+          updated_at?: string | null
+          value?: Json | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          key?: string
+          updated_at?: string | null
+          value?: Json | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "moderator"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +422,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "moderator"],
+    },
   },
 } as const
