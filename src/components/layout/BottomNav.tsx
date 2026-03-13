@@ -1,12 +1,12 @@
-import { Home, Search, Heart, User } from 'lucide-react';
+import { Home, Search, Heart, Compass } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
 const navItems = [
   { icon: Home, label: 'Início', path: '/' },
   { icon: Search, label: 'Buscar', path: '/buscar' },
+  { icon: Compass, label: 'Explorar', path: '/explorar' },
   { icon: Heart, label: 'Favoritos', path: '/favoritos' },
-  { icon: User, label: 'Admin', path: '/admin' },
 ];
 
 export function BottomNav() {
