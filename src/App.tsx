@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { PublicLayout } from "@/components/layout/PublicLayout";
 import Index from "./pages/Index";
+import ExplorePage from "./pages/ExplorePage";
 import PlaceDetails from "./pages/PlaceDetails";
 import SearchPage from "./pages/SearchPage";
 import FavoritesPage from "./pages/FavoritesPage";
@@ -28,6 +29,7 @@ const App = () => (
           <Route element={<PublicLayout />}>
             <Route path="/" element={<Index />} />
             <Route path="/buscar" element={<SearchPage />} />
+            <Route path="/explorar" element={<ExplorePage />} />
             <Route path="/favoritos" element={<FavoritesPage />} />
             <Route path="/local/:slug" element={<PlaceDetails />} />
           </Route>
