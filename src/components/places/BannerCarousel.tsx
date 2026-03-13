@@ -23,7 +23,7 @@ export function BannerCarousel() {
 
   return (
     <div className="px-4 relative">
-      <div className="rounded-2xl overflow-hidden relative aspect-[2/1]">
+      <div className="rounded-2xl overflow-hidden relative aspect-[2/1] shadow-md">
         {banners.map((banner, i) => (
           <div
             key={banner.id}
@@ -38,10 +38,10 @@ export function BannerCarousel() {
               className="w-full h-full object-cover"
             />
             {banner.title && (
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent flex items-end p-4">
                 <div>
-                  <h3 className="text-white font-bold text-lg">{banner.title}</h3>
-                  {banner.subtitle && <p className="text-white/80 text-sm">{banner.subtitle}</p>}
+                  <h3 className="text-primary-foreground font-bold text-lg">{banner.title}</h3>
+                  {banner.subtitle && <p className="text-primary-foreground/80 text-sm">{banner.subtitle}</p>}
                 </div>
               </div>
             )}

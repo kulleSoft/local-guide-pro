@@ -13,7 +13,7 @@ export default function ExplorePage() {
         {Array.from({ length: 3 }).map((_, i) => (
           <div key={i} className="space-y-3">
             <Skeleton className="h-6 w-32" />
-            <div className="flex gap-4 overflow-hidden">
+            <div className="flex gap-3 overflow-hidden">
               <PlaceCardSkeleton />
               <PlaceCardSkeleton />
             </div>
@@ -26,7 +26,7 @@ export default function ExplorePage() {
   return (
     <div className="py-4 space-y-6">
       <div className="px-4">
-        <h1 className="text-xl font-bold">Explorar</h1>
+        <h1 className="text-xl font-extrabold">Explorar</h1>
         <p className="text-sm text-muted-foreground">Descubra locais por categoria</p>
       </div>
       {categories?.map(cat => {
@@ -34,10 +34,10 @@ export default function ExplorePage() {
         if (!catPlaces.length) return null;
         return (
           <section key={cat.id}>
-            <h2 className="font-bold text-lg px-4 mb-3">{cat.name}</h2>
-            <div className="flex gap-4 overflow-x-auto scrollbar-hide px-4">
+            <h2 className="font-bold text-base px-4 mb-3">{cat.name}</h2>
+            <div className="flex gap-3 overflow-x-auto scrollbar-hide px-4">
               {catPlaces.map(p => (
-                <div key={p.id} className="min-w-[280px] max-w-[280px]">
+                <div key={p.id} className="min-w-[200px] max-w-[200px]">
                   <PlaceCard place={p as any} />
                 </div>
               ))}
