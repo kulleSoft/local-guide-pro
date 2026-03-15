@@ -215,6 +215,10 @@ export default function AdminPlaces() {
                 <Label>Horário de funcionamento</Label>
                 <Input value={form.opening_hours} onChange={e => update('opening_hours', e.target.value)} className="h-11 rounded-xl" />
               </div>
+              <div className="space-y-2">
+                <Label>Especialidades da casa</Label>
+                <Input value={form.specialties} onChange={e => update('specialties', e.target.value)} placeholder="Ex: Pizza, Pasta, Risoto" className="h-11 rounded-xl" />
+              </div>
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-2">
                   <Label>Faixa de preço (1-5)</Label>
