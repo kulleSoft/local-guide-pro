@@ -34,6 +34,7 @@ const emptyForm: PlaceForm = {
   cover_image: '', phone: '', whatsapp: '', instagram: '',
   website: '', opening_hours: '', price_range: 1,
   featured: false, active: true, display_order: 0,
+  specialties: '',
 };
 
 export default function AdminPlaces() {
