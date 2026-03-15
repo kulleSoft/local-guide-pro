@@ -178,6 +178,21 @@ export default function PlaceDetails() {
               {place.description && (
                 <p className="text-muted-foreground text-sm leading-relaxed">{place.description}</p>
               )}
+              {(place as any).specialties && (
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <ChefHat className="h-4 w-4 text-primary flex-shrink-0" />
+                    <span className="text-sm font-semibold">Especialidades</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {(place as any).specialties.split(',').map((item: string, i: number) => (
+                      <span key={i} className="text-xs font-medium bg-accent text-accent-foreground px-3 py-1.5 rounded-full">
+                        {item.trim()}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
               {place.opening_hours && (
                 <div className="flex items-start gap-3">
                   <Clock className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" />
