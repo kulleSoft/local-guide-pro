@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { usePlace } from '@/hooks/usePlaces';
 import { useFavorites } from '@/hooks/useFavorites';
-import { ArrowLeft, Heart, MapPin, Phone, Clock, Star, Share2, ExternalLink, MessageCircle, Image } from 'lucide-react';
+import { ArrowLeft, Heart, MapPin, Phone, Clock, Star, Share2, ExternalLink, MessageCircle, Image, ChefHat } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { PRICE_LABELS } from '@/lib/constants';
