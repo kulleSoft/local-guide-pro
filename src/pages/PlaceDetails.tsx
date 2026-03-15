@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { usePlace } from '@/hooks/usePlaces';
 import { useFavorites } from '@/hooks/useFavorites';
-import { ArrowLeft, Heart, MapPin, Phone, Clock, Star, Share2, ExternalLink, MessageCircle, Image } from 'lucide-react';
+import { ArrowLeft, Heart, MapPin, Phone, Clock, Star, Share2, ExternalLink, MessageCircle, Image, ChefHat } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { PRICE_LABELS } from '@/lib/constants';
@@ -177,6 +177,21 @@ export default function PlaceDetails() {
             <div className="space-y-3">
               {place.description && (
                 <p className="text-muted-foreground text-sm leading-relaxed">{place.description}</p>
+              )}
+              {(place as any).specialties && (
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <ChefHat className="h-4 w-4 text-primary flex-shrink-0" />
+                    <span className="text-sm font-semibold">Especialidades</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {(place as any).specialties.split(',').map((item: string, i: number) => (
+                      <span key={i} className="text-xs font-medium bg-accent text-accent-foreground px-3 py-1.5 rounded-full">
+                        {item.trim()}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               )}
               {place.opening_hours && (
                 <div className="flex items-start gap-3">

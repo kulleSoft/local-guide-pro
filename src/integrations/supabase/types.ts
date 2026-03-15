@@ -130,6 +130,7 @@ export type Database = {
           price_range: number | null
           rating: number | null
           slug: string
+          specialties: string | null
           updated_at: string | null
           visit_count: number | null
           website: string | null
@@ -158,6 +159,7 @@ export type Database = {
           price_range?: number | null
           rating?: number | null
           slug: string
+          specialties?: string | null
           updated_at?: string | null
           visit_count?: number | null
           website?: string | null
@@ -186,6 +188,7 @@ export type Database = {
           price_range?: number | null
           rating?: number | null
           slug?: string
+          specialties?: string | null
           updated_at?: string | null
           visit_count?: number | null
           website?: string | null

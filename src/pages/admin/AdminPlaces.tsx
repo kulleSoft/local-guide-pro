@@ -24,6 +24,7 @@ interface PlaceForm {
   cover_image: string; phone: string; whatsapp: string; instagram: string;
   website: string; opening_hours: string; price_range: number;
   featured: boolean; active: boolean; display_order: number;
+  specialties: string;
 }
 
 const emptyForm: PlaceForm = {
@@ -33,6 +34,7 @@ const emptyForm: PlaceForm = {
   cover_image: '', phone: '', whatsapp: '', instagram: '',
   website: '', opening_hours: '', price_range: 1,
   featured: false, active: true, display_order: 0,
+  specialties: '',
 };
 
 export default function AdminPlaces() {
@@ -105,6 +107,7 @@ export default function AdminPlaces() {
       opening_hours: place.opening_hours || '', price_range: place.price_range || 1,
       featured: place.featured || false, active: place.active ?? true,
       display_order: place.display_order || 0,
+      specialties: place.specialties || '',
     });
     setOpen(true);
   };
@@ -211,6 +214,10 @@ export default function AdminPlaces() {
               <div className="space-y-2">
                 <Label>Horário de funcionamento</Label>
                 <Input value={form.opening_hours} onChange={e => update('opening_hours', e.target.value)} className="h-11 rounded-xl" />
+              </div>
+              <div className="space-y-2">
+                <Label>Especialidades da casa</Label>
+                <Input value={form.specialties} onChange={e => update('specialties', e.target.value)} placeholder="Ex: Pizza, Pasta, Risoto" className="h-11 rounded-xl" />
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-2">
