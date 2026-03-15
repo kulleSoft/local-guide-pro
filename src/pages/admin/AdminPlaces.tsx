@@ -24,6 +24,7 @@ interface PlaceForm {
   cover_image: string; phone: string; whatsapp: string; instagram: string;
   website: string; opening_hours: string; price_range: number;
   featured: boolean; active: boolean; display_order: number;
+  specialties: string;
 }
 
 const emptyForm: PlaceForm = {
