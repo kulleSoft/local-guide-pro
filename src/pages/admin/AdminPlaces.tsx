@@ -107,6 +107,7 @@ export default function AdminPlaces() {
       opening_hours: place.opening_hours || '', price_range: place.price_range || 1,
       featured: place.featured || false, active: place.active ?? true,
       display_order: place.display_order || 0,
+      specialties: place.specialties || '',
     });
     setOpen(true);
   };
