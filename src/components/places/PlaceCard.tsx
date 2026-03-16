@@ -16,6 +16,7 @@ interface PlaceCardProps {
     neighborhood: string | null;
     city: string | null;
     categories: { name: string } | null;
+    specialties: string | null;
   };
 }
 
@@ -60,6 +61,11 @@ export function PlaceCard({ place }: PlaceCardProps) {
             {place.neighborhood && (
               <p className="text-[11px] text-muted-foreground mt-0.5 line-clamp-1">
                 {place.neighborhood}{place.city ? `, ${place.city}` : ''}
+              </p>
+            )}
+            {place.specialties && (
+              <p className="text-[10px] text-muted-foreground mt-1 line-clamp-1 italic">
+                {place.specialties}
               </p>
             )}
             <div className="flex items-center justify-between mt-2">

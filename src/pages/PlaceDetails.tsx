@@ -15,6 +15,7 @@ export default function PlaceDetails() {
   const { data: place, isLoading } = usePlace(slug || '');
   const { isFavorite, toggleFavorite } = useFavorites();
   const [activeTab, setActiveTab] = useState<'details' | 'reviews'>('details');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   if (isLoading) {
     return (
@@ -38,6 +39,15 @@ export default function PlaceDetails() {
 
   const fav = isFavorite(place.id);
   const gallery = (place.gallery as string[] | null) || [];
+  const allImages = [place.cover_image, ...gallery].filter(Boolean) as string[];
+
+  const handleSwipe = (direction: 'left' | 'right') => {
+    if (direction === 'left' && currentImageIndex < allImages.length - 1) {
+      setCurrentImageIndex(prev => prev + 1);
+    } else if (direction === 'right' && currentImageIndex > 0) {
+      setCurrentImageIndex(prev => prev - 1);
+    }
+  };
 
   const handleShare = async () => {
     const url = window.location.href;
@@ -59,21 +69,48 @@ export default function PlaceDetails() {
 
   return (
     <div className="pb-4 -mt-14">
-      {/* Cover image */}
-      <div className="relative aspect-[4/3] bg-muted">
-        {place.cover_image ? (
-          <img src={place.cover_image} alt={place.name} className="w-full h-full object-cover" />
+      {/* Cover image carousel */}
+      <div
+        className="relative aspect-[4/3] bg-muted overflow-hidden"
+        onTouchStart={(e) => {
+          const touch = e.touches[0];
+          (e.currentTarget as any)._touchStartX = touch.clientX;
+        }}
+        onTouchEnd={(e) => {
+          const startX = (e.currentTarget as any)._touchStartX;
+          const endX = e.changedTouches[0].clientX;
+          const diff = startX - endX;
+          if (Math.abs(diff) > 50) {
+            handleSwipe(diff > 0 ? 'left' : 'right');
+          }
+        }}
+      >
+        {allImages.length > 0 ? (
+          <img
+            src={allImages[currentImageIndex]}
+            alt={`${place.name} foto ${currentImageIndex + 1}`}
+            className="w-full h-full object-cover transition-opacity duration-300"
+          />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
             <MapPin className="h-12 w-12 text-muted-foreground" />
           </div>
         )}
         {/* Dots indicator */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
-          <div className="w-2 h-2 rounded-full bg-primary" />
-          <div className="w-2 h-2 rounded-full bg-card/50" />
-          <div className="w-2 h-2 rounded-full bg-card/50" />
-        </div>
+        {allImages.length > 1 && (
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
+            {allImages.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentImageIndex(i)}
+                className={cn(
+                  'w-2 h-2 rounded-full transition-colors',
+                  i === currentImageIndex ? 'bg-primary' : 'bg-card/50'
+                )}
+              />
+            ))}
+          </div>
+        )}
         {/* Top actions */}
         <div className="absolute top-14 left-0 right-0 px-4 flex justify-between">
           <button onClick={() => navigate(-1)} className="w-10 h-10 rounded-full bg-card/80 backdrop-blur flex items-center justify-center shadow">
@@ -235,23 +272,6 @@ export default function PlaceDetails() {
         </div>
       </div>
 
-      {/* Gallery */}
-      {gallery.length > 0 && (
-        <section className="mt-4 px-4">
-          <h2 className="font-bold text-base mb-3">Fotos</h2>
-          <div className="flex gap-3 overflow-x-auto scrollbar-hide">
-            {gallery.map((url, i) => (
-              <img
-                key={i}
-                src={url}
-                alt={`${place.name} foto ${i + 1}`}
-                className="h-28 w-40 rounded-2xl object-cover flex-shrink-0"
-                loading="lazy"
-              />
-            ))}
-          </div>
-        </section>
-      )}
     </div>
   );
 }
