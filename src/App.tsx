@@ -25,6 +25,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <TermsDialog />
       <BrowserRouter>
         <Routes>
           <Route element={<PublicLayout />}>
