@@ -35,7 +35,7 @@ const App = () => (
             <Route path="/favoritos" element={<FavoritesPage />} />
             <Route path="/local/:slug" element={<PlaceDetails />} />
           </Route>
-          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="places" element={<AdminPlaces />} />

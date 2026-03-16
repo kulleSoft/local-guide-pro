@@ -23,7 +23,7 @@ export default function AdminLogin() {
     if (error) {
       toast.error('Email ou senha inválidos');
     } else {
-      navigate('/admin/dashboard');
+      navigate('/admin/dashboard', { replace: true });
     }
   };
 
