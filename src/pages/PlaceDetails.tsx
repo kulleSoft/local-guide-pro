@@ -69,21 +69,48 @@ export default function PlaceDetails() {
 
   return (
     <div className="pb-4 -mt-14">
-      {/* Cover image */}
-      <div className="relative aspect-[4/3] bg-muted">
-        {place.cover_image ? (
-          <img src={place.cover_image} alt={place.name} className="w-full h-full object-cover" />
+      {/* Cover image carousel */}
+      <div
+        className="relative aspect-[4/3] bg-muted overflow-hidden"
+        onTouchStart={(e) => {
+          const touch = e.touches[0];
+          (e.currentTarget as any)._touchStartX = touch.clientX;
+        }}
+        onTouchEnd={(e) => {
+          const startX = (e.currentTarget as any)._touchStartX;
+          const endX = e.changedTouches[0].clientX;
+          const diff = startX - endX;
+          if (Math.abs(diff) > 50) {
+            handleSwipe(diff > 0 ? 'left' : 'right');
+          }
+        }}
+      >
+        {allImages.length > 0 ? (
+          <img
+            src={allImages[currentImageIndex]}
+            alt={`${place.name} foto ${currentImageIndex + 1}`}
+            className="w-full h-full object-cover transition-opacity duration-300"
+          />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
             <MapPin className="h-12 w-12 text-muted-foreground" />
           </div>
         )}
         {/* Dots indicator */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
-          <div className="w-2 h-2 rounded-full bg-primary" />
-          <div className="w-2 h-2 rounded-full bg-card/50" />
-          <div className="w-2 h-2 rounded-full bg-card/50" />
-        </div>
+        {allImages.length > 1 && (
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
+            {allImages.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentImageIndex(i)}
+                className={cn(
+                  'w-2 h-2 rounded-full transition-colors',
+                  i === currentImageIndex ? 'bg-primary' : 'bg-card/50'
+                )}
+              />
+            ))}
+          </div>
+        )}
         {/* Top actions */}
         <div className="absolute top-14 left-0 right-0 px-4 flex justify-between">
           <button onClick={() => navigate(-1)} className="w-10 h-10 rounded-full bg-card/80 backdrop-blur flex items-center justify-center shadow">

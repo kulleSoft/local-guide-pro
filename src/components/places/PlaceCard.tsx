@@ -63,6 +63,11 @@ export function PlaceCard({ place }: PlaceCardProps) {
                 {place.neighborhood}{place.city ? `, ${place.city}` : ''}
               </p>
             )}
+            {place.specialties && (
+              <p className="text-[10px] text-muted-foreground mt-1 line-clamp-1 italic">
+                {place.specialties}
+              </p>
+            )}
             <div className="flex items-center justify-between mt-2">
               <div className="flex items-center gap-1">
                 <Star className="h-3 w-3 fill-accent text-accent" />

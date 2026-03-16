@@ -13,9 +13,9 @@ export const CATEGORY_ICONS: Record<string, string> = {
 };
 
 export const PRICE_LABELS: Record<number, string> = {
-  1: '$',
-  2: '$$',
-  3: '$$$',
-  4: '$$$$',
-  5: '$$$$$',
+  1: 'Barato',
+  2: 'Moderado',
+  3: 'Caro',
+  4: 'Muito Caro',
+  5: 'Premium',
 };
