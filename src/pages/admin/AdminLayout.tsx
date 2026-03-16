@@ -18,8 +18,8 @@ export default function AdminLayout() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading && !user) navigate('/admin');
-    if (!loading && user && !isAdmin) navigate('/admin');
+    if (!loading && !user) navigate('/admin/login');
+    if (!loading && user && !isAdmin) navigate('/admin/login');
   }, [loading, user, isAdmin, navigate]);
 
   if (loading) {
