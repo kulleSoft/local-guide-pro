@@ -22,7 +22,7 @@ const Index = () => {
       {/* Hero section with red bg */}
       <div className="bg-primary -mt-1 pt-4 pb-6 px-5 rounded-b-[28px]">
         <h1 className="text-2xl font-extrabold text-primary-foreground leading-tight">
-          Descubra Novos<br />Lugares
+          Descubra Novos<br />Lugares no <span className="italic">Foodmap</span>
         </h1>
         <div className="mt-4">
           <SearchBar value={search} onChange={setSearch} variant="hero" />
