@@ -16,6 +16,7 @@ interface PlaceCardProps {
     neighborhood: string | null;
     city: string | null;
     categories: { name: string } | null;
+    specialties: string | null;
   };
 }
 
