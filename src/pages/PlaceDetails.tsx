@@ -272,23 +272,6 @@ export default function PlaceDetails() {
         </div>
       </div>
 
-      {/* Gallery */}
-      {gallery.length > 0 && (
-        <section className="mt-4 px-4">
-          <h2 className="font-bold text-base mb-3">Fotos</h2>
-          <div className="flex gap-3 overflow-x-auto scrollbar-hide">
-            {gallery.map((url, i) => (
-              <img
-                key={i}
-                src={url}
-                alt={`${place.name} foto ${i + 1}`}
-                className="h-28 w-40 rounded-2xl object-cover flex-shrink-0"
-                loading="lazy"
-              />
-            ))}
-          </div>
-        </section>
-      )}
     </div>
   );
 }
