@@ -41,13 +41,13 @@ export default function PlaceDetails() {
   const gallery = (place.gallery as string[] | null) || [];
   const allImages = [place.cover_image, ...gallery].filter(Boolean) as string[];
 
-  const handleSwipe = useCallback((direction: 'left' | 'right') => {
+  const handleSwipe = (direction: 'left' | 'right') => {
     if (direction === 'left' && currentImageIndex < allImages.length - 1) {
       setCurrentImageIndex(prev => prev + 1);
     } else if (direction === 'right' && currentImageIndex > 0) {
       setCurrentImageIndex(prev => prev - 1);
     }
-  }, [currentImageIndex, allImages.length]);
+  };
 
   const handleShare = async () => {
     const url = window.location.href;
