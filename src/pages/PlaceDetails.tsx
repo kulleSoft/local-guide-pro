@@ -7,7 +7,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { PRICE_LABELS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 export default function PlaceDetails() {
   const { slug } = useParams<{ slug: string }>();
@@ -15,6 +15,7 @@ export default function PlaceDetails() {
   const { data: place, isLoading } = usePlace(slug || '');
   const { isFavorite, toggleFavorite } = useFavorites();
   const [activeTab, setActiveTab] = useState<'details' | 'reviews'>('details');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   if (isLoading) {
     return (
