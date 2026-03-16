@@ -7,7 +7,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { PRICE_LABELS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 
 export default function PlaceDetails() {
   const { slug } = useParams<{ slug: string }>();
