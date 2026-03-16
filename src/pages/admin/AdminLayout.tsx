@@ -39,7 +39,7 @@ export default function AdminLayout() {
             </Link>
             <span className="font-bold text-lg">Painel Admin</span>
           </div>
-          <Button variant="ghost" size="icon" onClick={() => { signOut(); navigate('/admin'); }}>
+          <Button variant="ghost" size="icon" onClick={() => { signOut(); navigate('/admin/login'); }}>
             <LogOut className="h-4 w-4" />
           </Button>
         </div>
