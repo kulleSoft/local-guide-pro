@@ -11,8 +11,14 @@ export default function AdminLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signIn } = useAuth();
+  const { signIn, isAdmin, loading: authLoading, user } = useAuth();
   const navigate = useNavigate();
+
+  // Redirect if already logged in as admin
+  if (!authLoading && user && isAdmin) {
+    navigate('/admin/dashboard', { replace: true });
+    return null;
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
