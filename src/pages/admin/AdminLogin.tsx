@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -15,8 +15,13 @@ export default function AdminLogin() {
   const navigate = useNavigate();
 
   // Redirect if already logged in as admin
+  useEffect(() => {
+    if (!authLoading && user && isAdmin) {
+      navigate('/admin/dashboard', { replace: true });
+    }
+  }, [authLoading, user, isAdmin, navigate]);
+
   if (!authLoading && user && isAdmin) {
-    navigate('/admin/dashboard', { replace: true });
     return null;
   }
 
