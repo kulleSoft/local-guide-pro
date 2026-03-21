@@ -16,52 +16,54 @@ export function useAuth() {
       setIsAdmin(cachedAdminStatus.isAdmin);
       return;
     }
-    const { data } = await supabase
-      .from('user_roles')
-      .select('role')
-      .eq('user_id', userId)
-      .eq('role', 'admin')
-      .maybeSingle();
-    const admin = !!data;
+
+    const { data, error } = await supabase.rpc('has_role', {
+      _user_id: userId,
+      _role: 'admin',
+    });
+
+    const admin = !error && !!data;
     cachedAdminStatus = { userId, isAdmin: admin };
     setIsAdmin(admin);
   }, []);
 
+  const syncSessionState = useCallback(
+    async (currentSession: Session | null) => {
+      setSession(currentSession);
+      setUser(currentSession?.user ?? null);
+
+      if (currentSession?.user) {
+        await checkAdmin(currentSession.user.id);
+      } else {
+        setIsAdmin(false);
+        cachedAdminStatus = null;
+      }
+
+      setLoading(false);
+    },
+    [checkAdmin]
+  );
+
   useEffect(() => {
     let mounted = true;
 
-    // First get the current session synchronously
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      if (!mounted) return;
-      setSession(session);
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        await checkAdmin(session.user.id);
-      }
-      if (mounted) setLoading(false);
-    });
-
-    // Then listen for changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (_event, session) => {
+      async (_event, nextSession) => {
         if (!mounted) return;
-        setSession(session);
-        setUser(session?.user ?? null);
-        if (session?.user) {
-          await checkAdmin(session.user.id);
-        } else {
-          setIsAdmin(false);
-          cachedAdminStatus = null;
-        }
-        if (mounted) setLoading(false);
+        await syncSessionState(nextSession);
       }
     );
+
+    supabase.auth.getSession().then(async ({ data: { session: currentSession } }) => {
+      if (!mounted) return;
+      await syncSessionState(currentSession);
+    });
 
     return () => {
       mounted = false;
       subscription.unsubscribe();
     };
-  }, [checkAdmin]);
+  }, [syncSessionState]);
 
   const signIn = async (email: string, password: string) => {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
