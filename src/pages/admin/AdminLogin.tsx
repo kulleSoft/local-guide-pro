@@ -25,12 +25,11 @@ export default function AdminLogin() {
     if (!email || !password) { toast.error('Preencha todos os campos'); return; }
     setLoading(true);
     const { error } = await signIn(email, password);
-    setLoading(false);
     if (error) {
+      setLoading(false);
       toast.error('Email ou senha inválidos');
-    } else {
-      navigate('/admin/dashboard', { replace: true });
     }
+    // Navigation will happen via the redirect check above once auth state updates
   };
 
   return (
