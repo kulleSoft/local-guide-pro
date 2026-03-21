@@ -48,9 +48,12 @@ export function useAuth() {
     let mounted = true;
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (_event, nextSession) => {
+      (_event, nextSession) => {
         if (!mounted) return;
-        await syncSessionState(nextSession);
+        setTimeout(() => {
+          if (!mounted) return;
+          void syncSessionState(nextSession);
+        }, 0);
       }
     );
 
