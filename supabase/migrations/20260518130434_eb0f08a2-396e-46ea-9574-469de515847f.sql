@@ -1,0 +1,12 @@
+INSERT INTO public.places (id,name,slug,description,category_id,address,city,neighborhood,latitude,longitude,price_range,featured,active,rating,display_order) VALUES
+('90991f14-bdbd-468a-82fb-60652c38a4a8','Beijupirá','beijupirá','Restaurante tradicional de frutos do mar.','bd76e561-563f-4e01-80a1-bfc82f0d4702','Rua Beijupirá, 90','Porto de Galinhas','Centro',-8.509,-35.002,3,TRUE,TRUE,4.5,1),
+('b5f38554-c607-4f7b-a4f8-5c009107c766','Peixe na Telha','peixe-na-telha','Restaurante à beira-mar especializado em frutos do mar.','bd76e561-563f-4e01-80a1-bfc82f0d4702','Rua das Piscinas Naturais, 103','Porto de Galinhas','Centro',-8.509,-35.002,3,TRUE,TRUE,4.5,2),
+('5f585ce5-e6fd-4772-825a-f1ca1eb46866','Domingos Restaurante','domingos-restaurante','Restaurante conhecido pelo camarão com abacaxi.','bd76e561-563f-4e01-80a1-bfc82f0d4702','Rua Beijupirá, 128','Porto de Galinhas','Centro',-8.509,-35.002,3,TRUE,TRUE,4.5,3),
+('e00bf10d-99ce-439a-9b52-22d05b7c3b44','Barcaxeira','barcaxeira','Culinária regional pernambucana.','bd76e561-563f-4e01-80a1-bfc82f0d4702','Rua Esperança, 386','Porto de Galinhas','Centro',-8.509,-35.002,3,TRUE,TRUE,4.5,4),
+('b989a8fa-02d1-4f8d-aba2-fde30b6f9090','Munganga Bistrô','munganga-bistrô','Bistrô sofisticado com vista para o mar.','bd76e561-563f-4e01-80a1-bfc82f0d4702','Rua das Piscinas Naturais, 32','Porto de Galinhas','Centro',-8.509,-35.002,3,TRUE,TRUE,4.5,5),
+('294e855a-2cf6-4462-a6b5-63ccfe175f13','COTI Restaurante','coti-restaurante','Bar e restaurante moderno.','bd76e561-563f-4e01-80a1-bfc82f0d4702','Centro de Porto de Galinhas','Porto de Galinhas','Centro',-8.509,-35.002,3,TRUE,TRUE,4.5,6),
+('0549b572-0533-4d94-9def-c8c82012b1aa','Beer Rock Pub','beer-rock-pub','Pub com música ao vivo.','7d91d960-b588-4e77-8075-a9f451321096','Rua Esperança','Porto de Galinhas','Centro',-8.509,-35.002,3,TRUE,TRUE,4.5,7),
+('0c1548b2-8201-4b83-bc39-7477b1cb5f70','Pizzaria Paulista','pizzaria-paulista','Pizzaria tradicional.','bd76e561-563f-4e01-80a1-bfc82f0d4702','Rua Esperança','Porto de Galinhas','Centro',-8.509,-35.002,3,TRUE,TRUE,4.5,8),
+('bbef74da-c7e4-4abc-bb38-cc8f9e76b241','Café da Moeda','café-da-moeda','Cafeteria artesanal.','06207ced-b810-4699-9d63-2087e9454dd5','Rua Esperança, 458','Porto de Galinhas','Centro',-8.509,-35.002,3,TRUE,TRUE,4.5,9),
+('a6b253c0-fe67-45b9-bbb5-8a077cd72a8f','Vendinha Café','vendinha-café','Padaria e cafeteria.','06207ced-b810-4699-9d63-2087e9454dd5','Rua da Esperança','Porto de Galinhas','Centro',-8.509,-35.002,3,TRUE,TRUE,4.5,10)
+ON CONFLICT (id) DO NOTHING;
