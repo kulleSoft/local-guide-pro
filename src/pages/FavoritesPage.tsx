@@ -8,7 +8,7 @@ export default function FavoritesPage() {
   const { data: allPlaces } = usePlaces();
 
   const favPlaces = allPlaces?.filter(p => favorites.includes(p.id)) || [];
-  console.log("teste");
+  console.log("chamar ads");
   return (
     <div className="py-4 px-4 space-y-4">
       <h1 className="text-xl font-bold">Favoritos</h1>
